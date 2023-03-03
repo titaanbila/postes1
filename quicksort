@@ -1,0 +1,39 @@
+List1 = [[2,3,"7"],13,26,7,{"a":"asd","b":"c",3:5},2,7,"Tita",1,178] #petik dua untuk string
+List2 = []
+array_int = []
+
+def sor():
+    for i in range(len(List1)): #untuk mengulang panjang listku
+        if type(List1[i]) == int: 
+            array_int.append(List1[i]) #jika type list integer maka tertambahkan ke listku
+        else:
+            List2.append(List1[i]) #jika tidak maka akan masuk ke list 2
+
+#pemecahan
+def pt(list, low, high): #Partion
+    i = (low-1) #
+    pivot = list[high] #pivot untuk mengambil nilai tengah untuk dibandingkan dengan list yg sdh tersedia
+    for j in range(low, high): #sebagai parameter
+        if list[j] <= pivot: #jika list j kurang lebih sama dengan pivot maka i +1
+            i = i+1
+            list[i], list[j] = list[j], list[i]
+
+    list[i+1], list[high] = list[high], list[i+1]
+    return (i+1) #hasil
+
+#cara kerja
+def qs(l, low, high): #Quick Sort
+    if len(l) == 1:
+        return l
+    if low < high:
+        pi = pt(l, low, high)
+        qs(l, low, pi-1)
+        qs(l, pi+1, high)
+
+#hasil
+sor()
+qs(array_int, 0, len(array_int)-1) #baris ini untk memanggil parameter
+print("Sebelum disortir :")
+print(List1)
+print("Setelah disortir :")
+print(array_int + List2)
